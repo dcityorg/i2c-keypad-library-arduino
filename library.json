@@ -1,0 +1,25 @@
+{
+  "name": "I2cKeypad",
+  "keywords": "keypad",
+  "description": "I2C Keypad Library for Arduino",
+  "authors":
+  {
+	  "name": "Windy Hill Technology LLC",
+	  "email": "gary@wht.io",
+	  "url": "http://www.wht.io/",
+	  "maintainer": true
+  },
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/wht-io/i2c-keypad-library-arduino.git"
+  },
+  "version": "1.0.0",
+  "examples": [
+    "examples/*/*.ino"
+  ],
+  "url": "https://www.wht.io/",
+  "exclude": "extras",
+  "frameworks": "arduino",
+  "platforms": "*"
+}

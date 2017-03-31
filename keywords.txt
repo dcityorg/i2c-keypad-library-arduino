@@ -1,0 +1,23 @@
+###########################################
+# Syntax Coloring Map For I2CKEYPAD
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+I2CKEYPAD	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+begin	KEYWORD2
+scanKeys	KEYWORD2
+getKeyCount	KEYWORD2
+peekKey	KEYWORD2
+getKey	KEYWORD2
+getKeyUntil	KEYWORD2
+flushKeys	KEYWORD2
+###########################################
+# Constants (LITERAL1)
+###########################################
