@@ -1,81 +1,62 @@
-/*
-  Important NOTES:
-    1. If using Arduino IDE, version 1.5.0 or higher is REQUIRED!
-*/
 
 /*
   I2cKeypad.h
 
-  Written by: Gary Muhonen  gary@wht.io
+  Written by: Gary Muhonen  gary@dcity.org
 
-  versions
+  Versions
     1.0.0 - 3/10/2010
       Original Release.
+    1.0.1 - 8/27/2018 Transfer to GM, and some minor changes
 
 
-    Short Description:
+  Short Description:
 
-    This keypad library works with Arduino and Particle (Photon, Electron, and Core)
-    microcontroller boards that are connected to an I2C keypad. The keypad
-    connects to the I2C bus using a MCP23008 8 bit interface chip.
-    A link below details one such backpack board, and there may others.
+    These files provide a software library and demo program for the Arduino
+    and Particle microcontroller boards.
 
-    A demo program is available that demonstrates most of the features of this library.
+    The library files provide useful functions to make it easy
+    to communicate with matrix keypads (like a 4x4 keypad)
+    that use the I2C communication protocol. The demo
+    program shows the usage of the functions in the library.
 
-    See the project details links below for installation and usage information.
+    The keypad must connect to the I2C bus using a MCP23008 8 bit interface chip.
+    A backback board with the MCP23008 chip is available and details are in the link below.
 
-    Github repositories:
-    * Arduino library files:  https://github.com/wht-io/i2c-keypad-library-arduino.git
-    * Particle library files: https://github.com/wht-io/i2c-keypad-library-particle.git
 
-    Project Details:
+  https://www.dcity.org/portfolio/i2c-keypad-library/
+  This link has details including:
+    * software library installation for use with Arduino, Particle and Raspberry Pi boards
+    * list of functions available in these libraries
+    * a demo program (which shows the usage of most library functions)
+    * info on keypads that work with this software
+    * hardware design for a backpack board for keypads, available on github
+    * info on backpack “bare” pc boards available from OSH Park.
 
-    * Library installation and usage: http://wht.io/portfolio/i2c-keypad-library/
-    * I2C Keypad backpack board: http://wht.io/portfolio/i2c-keypad-backpack-board/
+  License Information:  https://www.dcity.org/license-information/
 
-*/
-
-/*
-  Windy Hill Technology LLC code, firmware, and software is released under the
-  MIT License (http://opensource.org/licenses/MIT).
-
-  The MIT License (MIT)
-
-  Copyright (c) 2016 Windy Hill Technology LLC
-
-  Permission is hereby granted, free of charge, to any person obtaining a
-  copy of this software and associated documentation files (the "Software"),
-  to deal in the Software without restriction, including without limitation
-  the rights to use, copy, modify, merge, publish, distribute, sublicense,
-  and/or sell copies of the Software, and to permit persons to whom the
-  Software is furnished to do so, subject to the following conditions:
-  The above copyright notice and this permission notice shall be included
-  in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-  DEALINGS IN THE SOFTWARE.
+  NOTES:
+      1. If using Arduino IDE, version 1.5.0 or higher is REQUIRED!
 */
 
 
-// only include this entire file if it has not been included already
-#ifndef I2CKEYPAD_H
-#define I2CKEYPAD_H
 
-
-
-#ifdef ARDUINO_ARCH_AVR        // if using an arduino IDE version 1.5 or higher is required
-#include <Arduino.h>
-#include <Wire.h>
+// include files... some boards require different include files
+#ifdef ARDUINO_ARCH_AVR        // if using an arduino
+#include "Arduino.h"
+#include "Wire.h"
+#elif ARDUINO_ARCH_SAM        // if using an arduino DUE
+#include "Arduino.h"
+#include "Wire.h"
 #elif PARTICLE                 // if using a core, photon, or electron (by particle.io)
-#include <Particle.h>
-#else                          // if using something else
+#include "Particle.h"
+#elif defined(__MK20DX128__) || (__MK20DX256__) || (__MK20DX256__) || (__MK62FX512__) || (__MK66FX1M0__) // if using a teensy 3.0, 3.1, 3.2, 3.5, 3.6
+#include "Arduino.h"
+#include "Wire.h"
+#else                          // if using something else then this may work
+#include "Arduino.h"
+#include "Wire.h"
 #endif
-
 
 // value returned by getKey(), peekKey(), getKeyUntil() when there are no keys in the buffer to be returned
 #define RETURN_NO_KEY_IN_BUFFER 0
@@ -92,7 +73,7 @@
 // registers in MCP23008 chip
 #define MCP_IODIR     0x00    // I/O direction register 1=input, 0=output (power on = 0xff)
 #define MCP_IPOL      0x01    // Input polarity register 1=input reversed, 0=input normal (0x00)
-#define MCP_GPINTEN   0x02    // Interrupt on change control register 1=gpio pin enabled for interrupt (0x00)
+#define MCP_GPINTEN   0x02    // Interrupt on change control register 1=gpio pin enabled for interrupt 0=no interrupt for that pin (0x00)
 #define MCP_DEFVAL    0x03    // Default Compare register for interrupt change (0x00)
 #define MCP_INTCON    0x04    // Interrupt control register 1=pin is compared against DEFVAL register, 0=pin is compared against previous pin value (0x00)
 #define MCP_IOCON     0x05    // Configuration register (0x00)
@@ -188,6 +169,3 @@ private:
 
 
 };
-
-
-#endif        // this is the end of the #ifndef I2CKEYPAD_H from the beginning of this file

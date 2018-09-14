@@ -1,55 +1,67 @@
 
 /*
-  Important NOTES:
-    1. If using Arduino IDE, version 1.5.0 or higher is REQUIRED!
-*/
-
-/*
   I2cKeypadDemo.ino
 
-  Written by: Gary Muhonen  gary@wht.io
+  Written by: Gary Muhonen  gary@dcity.org
 
-  versions
+  Versions
     1.0.0 - 3/10/2017
       Original release.
+    1.0.1 - 8/27/2018 Transfer to GM, and some minor changes
 
 
   Short Description:
 
-    This demo tests most of the features of the I2cKeypad library.
-    The library and demo program work with Arduino and Particle (Photon, Electron, and Core)
-    microcontroller boards that are connected to an I2C keypad. The keypad
-    connects to the I2C bus using a MCP23008 8 bit interface chip.
-    A link below details one such backpack board, and there may others.
+    These files provide a software library and demo program for the Arduino
+    and Particle microcontroller boards.
 
-    To run this demo program, you must have the serial port on your Particle/Arduino
-    connected to a serial monitor program on your computer to see the responses from the keypad.
+    The library files provide useful functions to make it easy
+    to communicate with matrix keypads (like a 4x4 keypad)
+    that use the I2C communication protocol. The demo
+    program shows the usage of the functions in the library.
 
-    See the project details links below for installation and usage information.
+    The keypad must connect to the I2C bus using a MCP23008 8 bit interface chip.
+    A backback board with the MCP23008 chip is available and details are in the link below.
 
-    Github repositories:
-    * Arduino library files:  https://github.com/wht-io/i2c-keypad-library-arduino.git
-    * Particle library files: https://github.com/wht-io/i2c-keypad-library-particle.git
 
-    Project Details:
+  https://www.dcity.org/portfolio/i2c-keypad-library/
+  This link has details including:
+    * software library installation for use with Arduino, Particle and Raspberry Pi boards
+    * list of functions available in these libraries
+    * a demo program (which shows the usage of most library functions)
+    * info on keypads that work with this software
+    * hardware design for a backpack board for keypads, available on github
+    * info on backpack “bare” pc boards available from OSH Park.
 
-    * Library installation and usage: http://wht.io/portfolio/i2c-keypad-library/
-    * I2C Keypad backpack board: http://wht.io/portfolio/i2c-keypad-backpack-board/
 
-*/
-
-/*
   This demo program is public domain. You may use it for any purpose.
-  NO WARRANTY IS IMPLIED.
+      NO WARRANTY IS IMPLIED.
+
+  License Information:  https://www.dcity.org/license-information/
+
+  NOTES:
+      1. If using Arduino IDE, version 1.5.0 or higher is REQUIRED!
+
 */
 
+// include files... some boards require different include files
 #ifdef ARDUINO_ARCH_AVR         // if using an arduino
-#include <I2cKeypad.h>
-#include <Wire.h>
-#elif PARTICLE                  // if using a core, photon, or electron (by particle.io)
-#include <I2cKeypad.h>
-#else                           // if using something else
+#include "I2cKeypad.h"
+#include "Wire.h"
+#elif ARDUINO_ARCH_SAM        // if using an arduino DUE
+#include "I2cKeypad.h"
+#include "Wire.h"
+#elif PARTICLE                     // if using a core, photon, or electron (by particle.io)
+#include "I2cKeypad/I2cKeypad.h"  // use this if the library files are in the particle repository of libraries
+//#include "I2cKeypad.h"     // use this if the library files are in the same folder as this demo program
+#elif defined(__MK20DX128__) || (__MK20DX256__) || (__MK20DX256__) || (__MK62FX512__) || (__MK66FX1M0__) // if using a teensy 3.0, 3.1, 3.2, 3.5, 3.6
+#include "I2cKeypad.h"
+#include "Wire.h"
+#else                           // if using something else then this may work
+#include "I2cKeypad.h"
+#include "Wire.h"
 #endif
+
 
 #define KEYPAD_ADDRESS     0x20                // i2c address for the keypad
 #define KEYPAD_DEBOUNCE_TIME 20                // 20ms debounce time for the keypad

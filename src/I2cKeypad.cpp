@@ -1,73 +1,57 @@
-/*
-  Important NOTES:
-    1. If using Arduino IDE, version 1.5.0 or higher is REQUIRED!
-*/
-
 
 /*
   I2cKeypad.cpp
 
-  Written by: Gary Muhonen  gary@wht.io
+  Written by: Gary Muhonen  gary@dcity.org
 
-  versions
+  Versions
     1.0.0 - 3/10/2010
       Original Release.
+    1.0.1 - 8/27/2018 Transfer to GM, and some minor changes
+
+  Short Description:
+
+  These files provide a software library and demo program for the Arduino
+  and Particle microcontroller boards.
+
+  The library files provide useful functions to make it easy
+  to communicate with matrix keypads (like a 4x4 keypad)
+  that use the I2C communication protocol. The demo
+  program shows the usage of the functions in the library.
+
+  The keypad must connect to the I2C bus using a MCP23008 8 bit interface chip.
+  A backback board with the MCP23008 chip is available and details are in the link below.
 
 
-    Short Description:
+  https://www.dcity.org/portfolio/i2c-keypad-library/
+  This link has details including:
+    * software library installation for use with Arduino, Particle and Raspberry Pi boards
+    * list of functions available in these libraries
+    * a demo program (which shows the usage of most library functions)
+    * info on keypads that work with this software
+    * hardware design for a backpack board for keypads, available on github
+    * info on backpack “bare” pc boards available from OSH Park.
 
-    This keypad library works with Arduino and Particle (Photon, Electron, and Core)
-    microcontroller boards that are connected to an I2C keypad. The keypad
-    connects to the I2C bus using a MCP23008 8 bit interface chip.
-    A link below details one such backpack board, and there may others.
 
-    A demo program is available that demonstrates most of the features of this library.
+  License Information:  https://www.dcity.org/license-information/
 
-    See the project details links below for installation and usage information.
-
-    Github repositories:
-    * Arduino library files:  https://github.com/wht-io/i2c-keypad-library-arduino.git
-    * Particle library files: https://github.com/wht-io/i2c-keypad-library-particle.git
-
-    Project Details:
-
-    * I2cKeypad Library details, installation and usage: http://wht.io/portfolio/i2c-keypad-library/
-    * I2C Keypad backpack board: http://wht.io/portfolio/i2c-keypad-backpack-board/
-
-*/
-
-/*
-  Windy Hill Technology LLC code, firmware, and software is released under the
-  MIT License (http://opensource.org/licenses/MIT).
-
-  The MIT License (MIT)
-
-  Copyright (c) 2016 Windy Hill Technology LLC
-
-  Permission is hereby granted, free of charge, to any person obtaining a
-  copy of this software and associated documentation files (the "Software"),
-  to deal in the Software without restriction, including without limitation
-  the rights to use, copy, modify, merge, publish, distribute, sublicense,
-  and/or sell copies of the Software, and to permit persons to whom the
-  Software is furnished to do so, subject to the following conditions:
-  The above copyright notice and this permission notice shall be included
-  in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-  DEALINGS IN THE SOFTWARE.
+  NOTES:
+      1. If using Arduino IDE, version 1.5.0 or higher is REQUIRED!
 */
 
 
+
+// include files... some boards require different include files
 #ifdef ARDUINO_ARCH_AVR        // if using an arduino
-#include <I2cKeypad.h>
+#include "I2cKeypad.h"
+#elif ARDUINO_ARCH_SAM         // if using a arduino DUE
+#include "I2cKeypad.h"
 #elif PARTICLE                 // if using a core, photon, or electron (by particle.io)
-#include <I2cKeypad.h>
-#else                          // if using something else
+#include "I2cKeypad.h"
+#elif defined(__MK20DX128__) || (__MK20DX256__) || (__MK20DX256__) || (__MK62FX512__) || (__MK66FX1M0__) // if using a teensy 3.0, 3.1, 3.2, 3.5, 3.6
+#include "I2cKeypad.h"
+#else                          // if using something else then this may work
+#include "I2cKeypad.h"
 #endif
 
 
