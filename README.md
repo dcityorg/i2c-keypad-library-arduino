@@ -2,13 +2,16 @@
 
 <div style="text-align: center;">
 <div style="display: inline-block; margin-right: 5px;">
-<img  src="https://www.dcity.org/dcity/wp-content/uploads/projects/i2c-keypad-backpack/seeeduino-and-keypad.jpg" alt="seeeduino and I2C Keypad" width="300" height="200" />
+<a href="https://www.dcity.org/dcity/wp-content/uploads/i2c-keypad-with-blackboard.jpg"><img src="https://www.dcity.org/dcity/wp-content/uploads/i2c-keypad-with-blackboard-600x400.jpg" alt="" width="300" height=“200" class="alignnone size-medium wp-image-517" /></a>
 </div>
 <div style="display: inline-block; margin-right: 5px;">
-<img  src="https://www.dcity.org/dcity/wp-content/uploads/projects/i2c-keypad-backpack/i2c-keypad-and-keypad.jpg" alt="i2c keypad backpack and keypad" width="300" height="200" />
+<a href="https://www.dcity.org/dcity/wp-content/uploads/i2c-keypad-misc-keypads.jpg"><img src="https://www.dcity.org/dcity/wp-content/uploads/i2c-keypad-misc-keypads-600x400.jpg" alt="" width="300" height="200" class="alignnone size-medium wp-image-517" /></a>
 </div>
 <div style="display: inline-block; margin-right: 5px;">
-<img  src="https://www.dcity.org/dcity/wp-content/uploads/projects/i2c-keypad-backpack/i2c-keypad-backpack.jpg" alt="i2c keypad backpack board" width="300" height="200" />
+<a href="https://www.dcity.org/dcity/wp-content/uploads/i2c-keypad-with-keypad.jpg"><img src="https://www.dcity.org/dcity/wp-content/uploads/i2c-keypad-with-keypad-600x400.jpg" alt="" width="300" height="200" class="alignnone size-medium wp-image-517" /></a>
+</div>
+<div style="display: inline-block; margin-right: 5px;">
+<a href="https://www.dcity.org/dcity/wp-content/uploads/i2c-keypad.jpg"><img src="https://www.dcity.org/dcity/wp-content/uploads/i2c-keypad-600x400.jpg" alt="" width="300" height=“200" class="alignnone size-medium wp-image-517" /></a>
 </div>
 </div>
 
